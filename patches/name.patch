@@ -1,0 +1,11 @@
+--- a/setup.py	2009-01-29 21:37:46.000000000 +0000
++++ b/setup.py	2010-12-17 00:06:51.000000000 +0000
+@@ -82,7 +82,7 @@
+                              )
+          
+         distSetup( 
+-            name="JPype", 
++            name="python26-jpype", 
+             version="0.5.4.1",
+             description="Python-Java bridge",
+             author="Steve Menard",

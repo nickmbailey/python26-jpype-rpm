@@ -1,0 +1,37 @@
+#!/bin/sh
+
+CUR_DIR=`dirname $0`
+CUR_DIR=`pwd $CUR_DIR`
+cd $CUR_DIR
+
+ORIG_NAME="JPype-0.5.4.1"
+NAME="python26-jpype"
+RELEASE=1
+PACKAGER="Nick Bailey - nick@riptano.com"
+REQUIRES="java"
+BUILD_REQUIRES="java"
+
+# copy to a directory for building
+cp -r $ORIG_NAME $NAME/
+#apply any patches
+for patch_file in patches/*
+do
+    patch -p1 -d $NAME < $patch_file
+done
+
+# neeed java to build
+export JAVA_HOME="/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/"
+
+# build rpms
+cd $NAME
+python2.6 setup.py bdist_rpm \
+        --python="python2.6" \
+        --dist-dir="$CUR_DIR" \
+        --release="$RELEASE" \
+        --packager="$PACKAGER" \
+        --build-requires="$BUILD_REQUIRES" \
+        --requires="$REQUIRES"
+cd ..
+
+rm -r "$CUR_DIR/$NAME"
+
