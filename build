@@ -9,7 +9,7 @@ NAME="python26-jpype"
 RELEASE=1
 PACKAGER="Nick Bailey - nick@riptano.com"
 REQUIRES="java"
-BUILD_REQUIRES="java"
+BUILD_REQUIRES="java, gcc-c++"
 
 # copy to a directory for building
 cp -r $ORIG_NAME $NAME/
